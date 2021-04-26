@@ -1,8 +1,7 @@
-import json
+import json 
 
 class Vacance():
-
-     ''' importe les données Vacances et les transforme en dictionnnaire
+    '''importe les données Vacance et les transforme en dictionnnaire
 
     Attributs 
     _________
@@ -14,19 +13,16 @@ class Vacance():
         chemin d'accès aux fichiers json
 
     Example 
-    _______
 
-    >>>> a = Covid('./Données/Données Vacances/')
-    >>>> print(a.dictionnaire)
-    >>>> d = { Date : '2020-09-23', Région : 'Occitanie', NumRégion : '76', TauxIncidRea : '10' }  
+    ---------
 
+    >>> b=Vacance('./Données/vacances.json')
+    >>> print(b.dictionnaire)
     '''
 
-    def __init__(self,jeu_de_donnee):
-        self.jeu_de_donnee = jeu_de_donnee
-        data=[]
-        with open(jeu_de_donnee) as json_file :
-            data = json.load(json_file)
-        self.dictionnaire = data
-
-
+    def __init__(self, jeu_de_donnee):
+        self.jeu_de_donnee=jeu_de_donnee
+        data = []
+        with open (jeu_de_donnee) as json_file:
+            data  = json.load(json_file)
+        self.dictionnaire=data 

@@ -16,9 +16,9 @@ class Covid():
     Example 
     _______
 
-    >>>> a = Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-    >>>> print(a.dictionnaire)
-    >>>> d = { Date : '2020-09-23', Région : 'Occitanie', NumRégion : '76', TauxIncidRea : '10' }  
+    >>> a = Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+    >>> print(a.dictionnaire)
+    >>> d = { Date : '2020-09-23', Région : 'Occitanie', NumRégion : '76', TauxIncidRea : '10' }  
 
     '''
 
