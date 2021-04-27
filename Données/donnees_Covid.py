@@ -1,14 +1,18 @@
 import csv
 
-class Covid():
+class Covid:
 
     ''' importe les données Covid et les transforme en dictionnnaire
 
-    Attributs 
+    
+    Parameters
     _________
 
-    dico : dict
-        dictionnaire initialement vide dans lequel on va stocker nos données
+    jeu_de_donnees : str
+        chemin d'accès aux fichiers csv
+
+    Attributs 
+    _________
 
     jeu_de_donnees : str
         chemin d'accès aux fichiers csv
