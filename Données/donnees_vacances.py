@@ -1,6 +1,7 @@
 import json 
 
 class Vacance:
+
     '''importe les données Vacance et les transforme en dictionnnaire
 
      Parameters
