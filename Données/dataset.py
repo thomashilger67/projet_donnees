@@ -3,7 +3,7 @@ from donnees_Vacances import Vacance
 
 class Dataset:
 
-     ''' crée un tytpe de données regroupant les données Covid et Vacance
+     ''' crée un type de données regroupant les données Covid et Vacance
 
     
     Parameters

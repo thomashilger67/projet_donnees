@@ -6,4 +6,4 @@ print(a.dictionnaire)
 
 
 #b=Vacance('./Données/vacances.json')
-#rint(b.dictionnaire)
+#print(b.dictionnaire)
