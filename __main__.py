@@ -1,12 +1,12 @@
-from Données.donnees_Covid import Covid
-from Données.donnees_Vacances import Vacance
-from Données.dataset import Dataset
+from Donnees.donnees_covid import Covid
+from Donnees.donnees_vacances import Vacance
+from Donnees.dataset import Dataset
 
-a = Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
 #print(a.dictionnaire)
 
 
-b=Vacance('./Données/vacances.json')
+b=Vacance('./Donnees/vacances.json')
 
 #print(b.dictionnaire)
 

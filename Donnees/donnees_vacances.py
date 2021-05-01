@@ -4,20 +4,20 @@ class Vacance:
 
     '''importe les données Vacance et les transforme en dictionnnaire
 
-    Parameters
-    ----------
+     Parameters
+    _________
 
     jeu_de_donnees : str
         chemin d'accès aux fichiers csv
 
     Attributs 
-    ---------
+    _________
 
     jeu_de_donnees : str
         chemin d'accès aux fichiers json
 
     Example 
-    -------
+    _______
 
     >>> b=Vacance('./Données/vacances.json')
     >>> print(b.dictionnaire)
