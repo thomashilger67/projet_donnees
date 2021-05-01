@@ -1,6 +1,6 @@
-from Donnees.donnees_covid import Covid
-from Donnees.donnees_vacances import Vacance
-from Donnees.dataset import Dataset
+from donnees_covid import Covid
+from donnees_vacances import Vacance
+from dataset import Dataset
 
 a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
 #print(a.dictionnaire)

@@ -1,5 +1,5 @@
-from Donnees.donnees_covid import Covid
-from Donnees.donnees_vacances import Vacance
+from donnees_covid import Covid
+from donnees_vacances import Vacance
 class Dataset:
 
     ''' crée un type de données regroupant les données Covid et Vacance
