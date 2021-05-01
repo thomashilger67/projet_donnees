@@ -34,7 +34,6 @@ class Dataset:
     '''
 
 
-
     def __init__(self,donnees_covid,donnees_vacances=None):
         '''Construit un Dataset
 
@@ -78,9 +77,43 @@ class Dataset:
             self.__donnees_covid.insert(position,new_donnee)
     
     def suppr_donnees_covid(self,position=-1):
+
+        '''Supprime une donné liée au Covid située à position 
+
+        Parameters
+        ----------
+        position : int
+            position à laquelle est placée la nouvelle donnée dans la liste
+
+        Examples
+        --------
+        >>> d = Dataset(Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Données/vacances.json'))
+        >>> suppr_donnees_covid([2020-03-19;"Centre-Val de Loire";24;6])
+
+        '''    
+        
         del(self.__donnees_covid[position])
 
     def ajout_donnees_vacances(self,cle,new_vac):
+
+        '''Ajoute une donné liée au Vacance à donnees_vacances 
+
+        Parameters
+        ----------
+        cle : str
+            clé du dictionnaire (Calendrier/Académie)
+
+        new_vac : dict
+            nouvelle donnée à ajouter
+        
+
+        Examples
+        --------
+        >>> d = Dataset(Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Données/vacances.json'))
+        >>> ajout_donnees_vacances("Calendrier",{"id":4,"Description":"Vacances d'Été","DateDebut":"lundi 09 juillet 2012","DateFin":"lundi 10 septembre 2012","Zone":"Corse","annee_scolaire":"2011-2012","Debut":"2012-07-09","Fin":"2012-09-10"})
+
+        '''    
+        
         l=self.__donnees_vacances.dictionnaire[cle]
         if new_vac['id']<len(l):
             l[new_vac['id']]=new_vac
@@ -90,6 +123,24 @@ class Dataset:
         self.__donnees_vacances.update(d_bis)
         
     def suppr_donnees_vacances(self,cle,id):
+        '''Ajoute une donné liée au Vacance à donnees_vacances 
+
+        Parameters
+        ----------
+        cle : str
+            clé du dictionnaire (Calendrier/Académie)
+
+        id : int
+            identifiant de la donnée que l'on veut supprimer
+        
+
+        Examples
+        --------
+        >>> d = Dataset(Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Données/vacances.json'))
+        >>> suppr_donnees_vacances("Calendrier",1048)
+
+        '''    
+
         del((self.__donnees_vacances.dictionnaire[cle])[id])
 
 
