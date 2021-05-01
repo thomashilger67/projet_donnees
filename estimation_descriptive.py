@@ -1,4 +1,4 @@
-from Estimation.estimation import Estimation
+from estimation import Estimation
 
 class EstimationDescriptive(Estimation):
 
