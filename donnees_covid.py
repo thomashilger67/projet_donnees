@@ -37,3 +37,4 @@ class Covid:
                 data.append(row)
         self.dictionnaire = data
     
+    
