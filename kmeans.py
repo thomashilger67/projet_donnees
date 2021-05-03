@@ -1,0 +1,60 @@
+import random 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+
+data=[[1.84,4.60],
+[5.67,3.46],
+[6.35,3.29],
+[2.90,4.63],[3.29,4.93]]
+
+def distanceself(X1,X2):
+    return (sum(X1-X2)**2)**(0.5)
+
+def findclosestcentroids(ic,X):
+    assigned_entroids=[]
+    for i in X:
+        distance=[]
+        for j in ic :
+            distance.append(distanceself(i,j))
+            assigned_entroids.append(np.argmin(distance))
+    return assigned_entroids
+
+def calc_centroids(clusters, X):
+    new_centroids = []
+    new_df = pd.concat([pd.DataFrame(X), pd.DataFrame(clusters, columns=['cluster'])],
+                      axis=1)
+    for c in set(new_df['cluster']):
+        current_cluster = new_df[new_df['cluster'] == c][new_df.columns[:-1]]
+        cluster_mean = current_cluster.mean(axis=0)
+        new_centroids.append(cluster_mean)
+    return new_centroids
+
+
+
+X=np.array(data)
+init_centreoids=random.sample(range(0,len(X)),2)
+centroids=[]
+for i in init_centreoids:
+    centroids.append(X[i])
+
+centroids=np.array(centroids)
+get_centroids=findclosestcentroids(centroids,X)
+
+for i in range(10):
+    get_centroids = findclosestcentroids(centroids, X)
+    centroids = calc_centroids(get_centroids, X)
+    
+    plt.figure()
+    plt.scatter(np.array(centroids)[:, 0], np.array(centroids)[:, 1], color='black')
+    plt.scatter(X[:, 0], X[:, 1], alpha=0.1)
+    plt.show()
+
+
+
+
+
+
+
+

@@ -32,9 +32,18 @@ class Covid:
         self.jeu_de_donnee = jeu_de_donnee
         data = []
         with open(jeu_de_donnee, encoding='ISO-8859-1') as csvfile :
-            covidreader = csv.reader(csvfile, delimiter=';') 
+            covidreader = csv.reader(csvfile,delimiter=';') 
             for row in covidreader :
                 data.append(row)
+        
+        
+        for ligne in data:
+            for i in range(len(data[0])):
+                try :
+                    ligne[i]=float(ligne[i])
+                except :
+                    pass
         self.dictionnaire = data
+
     
     
