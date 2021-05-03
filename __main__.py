@@ -1,20 +1,53 @@
 from donnees_covid import Covid
 from donnees_vacances import Vacance
 from dataset import Dataset
+<<<<<<< HEAD
 from fenetrage import Fenetrage
 
 a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
 # print(a.dictionnaire)
+=======
+<<<<<<< HEAD
+
+a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+#print(a.dictionnaire)
+print(a.dictionnaire[0])
+=======
+from estimation_descriptive import EstimationDescriptive
+>>>>>>> e6b8f4b0f24fb027827509e9d187b6d0ab19654a
+>>>>>>> 33a4df72775ac06f03564a48646f90fe4b0f38b9
 
 
-b=Vacance('./Donnees/vacances.json')
+a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+data=Dataset(a)
 
+<<<<<<< HEAD
 # print(b.dictionnaire)
+=======
+<<<<<<< HEAD
+print(a.dictionnaire[0][3],a.dictionnaire[1][3])
+>>>>>>> 33a4df72775ac06f03564a48646f90fe4b0f38b9
 
 #d={"id":0,"Description":"Vacances de Noël","DateDebut":"lundi 21 décembre 2009","DateFin":"lundi 04 janvier 2010","Zone":"Corse","annee_scolaire":"2009-2010","Debut":"2009-12-21","Fin":"2010-01-04"}
 #b.dictionnaire['Calendrier'].append(d)
 #print(b.dictionnaire['Calendrier'])
+<<<<<<< HEAD
 d =Dataset(a,b)
 f = Fenetrage('2020-10-01', '2020-10-27')
 print(f.application(d))
+=======
+d=Dataset(a.dictionnaire,b.dictionnaire)
+#print(d)
+#d.ajout_donnees_vacances('Academie',{'id': 276, 'Code_Dpt': '61', 'Dpt': '61 - Orne', 'Region': 'Normandie', 'Academie': 'de Caen', 'Zone': 'Zone B', 'NomAcademie': 'Caen', 'Departement': 'Orne'})
 
+d.suppr_donnees_vacances('Calendrier',0)
+#print(d.donnees_vacances['Calendrier'][0])
+>>>>>>> 33a4df72775ac06f03564a48646f90fe4b0f38b9
+
+
+=======
+estimation=EstimationDescriptive()
+print(estimation.ecart_type(data))
+#b=Vacance('./Donnees/vacances.json')
+#print(b.dictionnaire)
+>>>>>>> e6b8f4b0f24fb027827509e9d187b6d0ab19654a

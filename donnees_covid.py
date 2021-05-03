@@ -6,19 +6,19 @@ class Covid:
 
     
     Parameters
-    _________
+    ----------
 
     jeu_de_donnees : str
         chemin d'accès aux fichiers csv
 
     Attributs 
-    _________
+    ---------
 
     jeu_de_donnees : str
         chemin d'accès aux fichiers csv
 
     Example 
-    _______
+    -------
 
     >>> a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
     >>> print(a.dictionnaire)
@@ -36,4 +36,5 @@ class Covid:
             for row in covidreader :
                 data.append(row)
         self.dictionnaire = data
+    
     

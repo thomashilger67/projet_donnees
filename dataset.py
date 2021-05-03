@@ -1,5 +1,6 @@
 from donnees_covid import Covid
 from donnees_vacances import Vacance
+
 class Dataset:
 
     ''' crée un type de données regroupant les données Covid et Vacance
@@ -17,10 +18,10 @@ class Dataset:
     Attributs 
     ---------
 
-    __donnees_covid : Covid
+    donnees_covid : Covid
         données Covid du Dataset
     
-    __donnees_vacances : Vacance
+    donnees_vacances : Vacance
         données Vacance du Dataset
 
     Example 
@@ -50,11 +51,11 @@ class Dataset:
         >>> d = Dataset(Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Données/vacances.json'))
         '''
 
-        self.__donnees_covid=donnees_covid
-        self.__donnees_vacances=donnees_vacances
+        self.donnees_covid=donnees_covid
+        self.donnees_vacances=donnees_vacances
 
     def ajout_donnees_covid(self,new_donnee,position=-1): #la première position doit ici correspondre à 0
-        '''Ajoute une donné liée au Covid à donnees_covid
+        '''Ajoute une donnée liée au Covid à donnees_covid
 
         Parameters
         ----------
@@ -72,24 +73,75 @@ class Dataset:
         '''    
         
         if position==-1:
-            self.__donnees_covid.append(new_donnee)
+            self.donnees_covid.append(new_donnee)
         else:
-            self.__donnees_covid.insert(position,new_donnee)
+            self.donnees_covid.insert(position,new_donnee)
     
     def suppr_donnees_covid(self,position=-1):
-        del(self.__donnees_covid[position])
+
+        ''' Supprime une donnée liée au Covid à donnees_covid
+
+        Parameters
+        ----------
+        
+        position : int
+            position à laquelle on veut supprimer la donnée dans la liste
+
+        Examples
+        --------
+        >>> d = Dataset(Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Données/vacances.json'))
+        >>> suppr_donnees_covid()
+
+        '''    
+
+        del(self.donnees_covid[position])
 
     def ajout_donnees_vacances(self,cle,new_vac):
-        l=self.__donnees_vacances.dictionnaire[cle]
-        if new_vac['id']<len(l):
-            l[new_vac['id']]=new_vac
-        else :
-            l.append(new_vac)
-        d_bis={cle : l}
-        self.__donnees_vacances.update(d_bis)
+        '''Ajoute une donnée liée au Covid à donnees_covid
+
+        Parameters
+        ----------
+
+        cle : str
+            clé où l'on veut placer la donnée (Calendrier/Academie)
+
+        new_vac : list
+            nouvelle donnée à ajouter
+
+        Examples
+        --------
+        >>> d = Dataset(Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Données/vacances.json'))
+        >>> ajout_donnees_vacances('Calendrier',{'id': 1, 'Description': "Vacances d'Hiver", 'DateDebut': 'lundi 22 fÃ©vrier 2010', 'DateFin': 'lundi 08 mars 2010', 'Zone': 'Corse', 'annee_scolaire': '2009-2010', 'Debut': '2010-02-22', 'Fin': '2010-03-08'})
+
+        '''    
+
+        self.donnees_vacances[cle].append(new_vac)
         
     def suppr_donnees_vacances(self,cle,id):
-        del((self.__donnees_vacances.dictionnaire[cle])[id])
+
+        ''' Supprime une donnée liée au Covid à donnees_covid
+
+        Parameters
+        ----------
+        
+        cle : str
+            clé on l'où vont supprimer la donnée
+        
+        id : int
+            identifiant que l'on veut supprimer
+
+        Examples
+        --------
+        >>> d = Dataset(Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Données/vacances.json'))
+        >>> suppr_donnees_vacances('Calendrier',1)
+
+        '''   
+
+        del((self.donnees_vacances[cle])[id])
+
+    def __str__(self):
+        modele = '\n'.join(["les données Covid sont : {}","les données des vacances sont : {}"])
+        return modele.format(self.donnees_covid,self.donnees_vacances)
 
 
 
