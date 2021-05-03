@@ -50,8 +50,8 @@ class Dataset:
         >>> d = Dataset(Covid('./Données/Données Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Données/vacances.json'))
         '''
 
-        self.__donnees_covid=donnees_covid
-        self.__donnees_vacances=donnees_vacances
+        self.donnees_covid=donnees_covid
+        self.donnees_vacances=donnees_vacances
 
     def ajout_donnees_covid(self,new_donnee,position=-1): #la première position doit ici correspondre à 0
         '''Ajoute une donné liée au Covid à donnees_covid
@@ -72,24 +72,24 @@ class Dataset:
         '''    
         
         if position==-1:
-            self.__donnees_covid.append(new_donnee)
+            self.donnees_covid.append(new_donnee)
         else:
-            self.__donnees_covid.insert(position,new_donnee)
+            self.donnees_covid.insert(position,new_donnee)
     
     def suppr_donnees_covid(self,position=-1):
-        del(self.__donnees_covid[position])
+        del(self.donnees_covid[position])
 
     def ajout_donnees_vacances(self,cle,new_vac):
-        l=self.__donnees_vacances.dictionnaire[cle]
+        l=self.donnees_vacances.dictionnaire[cle]
         if new_vac['id']<len(l):
             l[new_vac['id']]=new_vac
         else :
             l.append(new_vac)
         d_bis={cle : l}
-        self.__donnees_vacances.update(d_bis)
+        self.donnees_vacances.update(d_bis)
         
     def suppr_donnees_vacances(self,cle,id):
-        del((self.__donnees_vacances.dictionnaire[cle])[id])
+        del((self.donnees_vacances.dictionnaire[cle])[id])
 
 
 
