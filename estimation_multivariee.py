@@ -3,6 +3,7 @@ from dataset import Dataset
 import random 
 import numpy as np
 import pandas as pd
+from donn
 
 def distance(X1,X2):
     return (sum(X1-X2)**2)**(0.5)

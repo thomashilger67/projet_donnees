@@ -2,12 +2,22 @@ import random
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from donnees_covid import Covid
+from dataset import Dataset
+a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+data=Dataset(a)
 
 
-data=[[1.84,4.60],
-[5.67,3.46],
-[6.35,3.29],
-[2.90,4.63],[3.29,4.93]]
+
+def nettoyage_dataset(dataset):
+
+    dataset_sortie=dataset
+    for ligne in dataset_sortie.donnees_covid.dictionnaire:
+        for i in range(len(ligne)-1,-1,-1):
+                if not type(ligne[i])== float:
+                    del ligne[i]
+    return dataset_sortie.donnees_covid.dictionnaire
+
 
 def distanceself(X1,X2):
     return (sum(X1-X2)**2)**(0.5)
@@ -33,7 +43,7 @@ def calc_centroids(clusters, X):
 
 
 
-X=np.array(data)
+X=np.array(nettoyage_dataset(data))
 init_centreoids=random.sample(range(0,len(X)),2)
 centroids=[]
 for i in init_centreoids:
