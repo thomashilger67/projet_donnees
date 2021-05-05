@@ -4,7 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from donnees_covid import Covid
 from dataset import Dataset
-a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+a = Covid('/Users/thomashilger/Desktop/view.php.csv')
 data=Dataset(a)
 
 
@@ -16,7 +16,7 @@ def nettoyage_dataset(dataset):
         for i in range(len(ligne)-1,-1,-1):
                 if not type(ligne[i])== float:
                     del ligne[i]
-    return dataset_sortie.donnees_covid.dictionnaire
+    return dataset_sortie.donnees_covid.dictionnaire[1:]
 
 
 def distanceself(X1,X2):
@@ -44,7 +44,8 @@ def calc_centroids(clusters, X):
 
 
 X=np.array(nettoyage_dataset(data))
-init_centreoids=random.sample(range(0,len(X)),2)
+
+init_centreoids=random.sample(range(0,len(X)),3)
 centroids=[]
 for i in init_centreoids:
     centroids.append(X[i])
@@ -52,14 +53,14 @@ for i in init_centreoids:
 centroids=np.array(centroids)
 get_centroids=findclosestcentroids(centroids,X)
 
-for i in range(10):
+for i in range(4):
     get_centroids = findclosestcentroids(centroids, X)
     centroids = calc_centroids(get_centroids, X)
     
-    plt.figure()
-    plt.scatter(np.array(centroids)[:, 0], np.array(centroids)[:, 1], color='black')
-    plt.scatter(X[:, 0], X[:, 1], alpha=0.1)
-    plt.show()
+    #plt.figure()
+    #plt.scatter(np.array(centroids)[:, 0], np.array(centroids)[:, 1], color='black')
+    #plt.scatter(X[:, 0], X[:, 1], alpha=0.1)
+    #plt.show()
 
 
 
