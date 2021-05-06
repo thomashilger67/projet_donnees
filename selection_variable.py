@@ -17,3 +17,5 @@ class Selection_Var:
                     #prendre la position dans la liste puis extraire toutes les valeurs à cett position
             else : #c'est dans vacances
         
+
+        #sélection des varibles ->>> on peut sélectionner la réanimation à tel jour?
