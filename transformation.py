@@ -7,4 +7,5 @@ class Transformation(ABC):
 
     @abstractmethod
     def application(self,jeu_de_donnees):
-        pass
+        pass 
+    #appliquer application sur vacacnces ou sur covid selon l'attribut en paramètre
