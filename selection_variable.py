@@ -1,21 +1,34 @@
 from dataset import Dataset
 
+
+#comprendre application dans la classe transfo : l'appliquer à un argument 
+
 class Selection_Var:
 
-    def __init__(self,selection):
+    def __init__(self,selection,select_fichier): #select_fichier
         self.selection=selection
+        self.select_fichier=select_fichier
     
-    def application(self,dataset):
-        covid=dataset.donnees_covid
-        vacance=dataset.donnees_vacances
+    def application_Covid(self,dataset):
         new_list=[]
-        for var in self.selection :
-            if var  in covid[0]:
-                indice=covid[0].index(var)
-                for i in len(covid):
-                    new_list.append(covid[i][indice])
-                    #prendre la position dans la liste puis extraire toutes les valeurs à cett position
-            else : #c'est dans vacances
+        covid=dataset.donnees_covid
+        indice=covid[0].index(self.selection)
+        for elt in covid:
+            new_list.append(elt[indice])
+
+        return(new_list)
+
+    def application_Vacance(self,dataset):
+        vacances=dataset.donnees_vacances
+        new_list=[]
+        if self.selection in vacances['Calendrier'][0]:
+            for elt in vacances['Calendrier']:
+                new_list.append(elt[self.selection])
+        else:
+            for elt in vacances['Academie']:
+                new_list.append(elt[self.selection])
+        return(new_list)
+                    
         
 
-        #sélection des varibles ->>> on peut sélectionner la réanimation à tel jour?
+        

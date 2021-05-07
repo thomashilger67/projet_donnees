@@ -43,7 +43,7 @@ class Covid:
                     ligne[i]=float(ligne[i])
                 except :
                     pass
-        self.dictionnaire = data
+        self.liste = data
 
     
     
