@@ -11,8 +11,7 @@ a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.
 b=Vacance('./Donnees/vacances.json')
 
 data=Dataset(a.liste,b.dictionnaire)
-
-print((Agregation_Spatiale("dc","Occitanie").application_regionale(data)))  #chiffre eh dessous des offciciels ???
+print(Selection_Var("Code_Dpt",'vacance').application(data))
 
 estimation=EstimationMultivariee()
 #print(estimation.Kmeans(data,2,2))
