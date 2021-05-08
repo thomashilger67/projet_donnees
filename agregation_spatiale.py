@@ -2,17 +2,17 @@ from dataset import Dataset
 from selection_variable import Selection_Var
 from donnees_vacances import Vacance
 from donnees_covid import Covid
+from transformation import Transformation
 
 
-class Agregation_Spatiale:
+class Agregation_Spatiale(Transformation):
 
     
-    def __init__(self,var_selection,region=None):
-        self.var_selection=var_selection
+    def __init__(self,var_selection,donnees,region=None):
+        super().__init__(var_selection,donnees)
         self.region=region
         
     def reg(self):
-
         vac=Vacance('./Donnees/vacances.json')
         liste_academie=vac.dictionnaire['Academie']
         dep_region=[]
@@ -65,6 +65,11 @@ class Agregation_Spatiale:
                     somme+=dataset.donnees_covid[i][indice_var]
         return(Dataset([["Region",self.var_selection],[self.region,somme]]))
 
+    def application_Covid(self,dataset):
+        return(self.application_nationale(dataset) if self.region==None else self.application_regionale(dataset))
+    
+    def application_Vacance(self,dataset):
+        return( "Il n'y a pas d'agrégation spatiale pour les vacances")
 
 
 

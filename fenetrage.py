@@ -6,8 +6,8 @@ class Fenetrage(Transformation):
         self.date_debut = date_debut
     
     def application(self,jeu_de_donnees):
-        list_covid = jeu_de_donnees.__donnees_covid
-        dic_vacances = jeu_de_donnees.__donnees_vacances 
+        list_covid = jeu_de_donnees.donnees_covid
+        dic_vacances = jeu_de_donnees.donnees_vacances 
         list_date = []
         for x in list_covid :
             list_date.append([int(y) for y in x[0].split('-')])
