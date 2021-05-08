@@ -12,6 +12,7 @@ b=Vacance('./Donnees/vacances.json')
 
 data=Dataset(a.liste,b.dictionnaire)
 print(Selection_Var("Code_Dpt",'vacance').application(data))
+print(Agregation_Spatiale("dc",'Covid','Occitanie').application(data))  #chiffre eh dessous des offciciels ???
 
 estimation=EstimationMultivariee()
 #print(estimation.Kmeans(data,2,2))

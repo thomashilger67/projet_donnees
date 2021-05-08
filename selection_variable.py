@@ -4,7 +4,7 @@ from transformation import Transformation
 
 #comprendre application dans la classe transfo : l'appliquer à un argument 
 
-class Selection_Var:
+class Selection_Var(Transformation):
 
     def __init__(self,selection,select_fichier): #select_fichier
         self.selection=selection
