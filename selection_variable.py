@@ -1,4 +1,5 @@
 from dataset import Dataset
+from transformation import Transformation
 
 
 #comprendre application dans la classe transfo : l'appliquer à un argument 
