@@ -28,8 +28,9 @@ class Covid:
 
 
 
-    def __init__(self, jeu_de_donnee):
+    def __init__(self, jeu_de_donnee,jeu_de_donnee2=None):
         self.jeu_de_donnee = jeu_de_donnee
+        self.jeu_de_donnee2= jeu_de_donnee2
         data = []
         with open(jeu_de_donnee, encoding='ISO-8859-1') as csvfile :
             covidreader = csv.reader(csvfile,delimiter=';') 
@@ -43,6 +44,8 @@ class Covid:
                     ligne[i]=float(ligne[i])
                 except :
                     pass
+       
+
         self.liste = data
 
     
