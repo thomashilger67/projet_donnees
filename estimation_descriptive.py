@@ -8,9 +8,9 @@ class EstimationDescriptive(Estimation):
 
     def moyenne(self,dataset):
         sum=0
-        largeur = len(dataset.donnees_covid.dictionnaire[0]) -1
-        longueur = len(dataset.donnees_covid.dictionnaire)
-        for donnees in dataset.donnees_covid.dictionnaire[1:]:
+        largeur = len(dataset.donnees_covid.liste[0]) -1
+        longueur = len(dataset.donnees_covid.liste)
+        for donnees in dataset.donnees_covid.liste[1:]:
             sum=sum + float(donnees[largeur])
         
         return sum/longueur
@@ -18,9 +18,9 @@ class EstimationDescriptive(Estimation):
     def variance(self,dataset):
         var=0
         moy=self.moyenne(dataset)
-        largeur = len(dataset.donnees_covid.dictionnaire[0]) -1
-        longueur = len(dataset.donnees_covid.dictionnaire)
-        for donnees in dataset.donnees_covid.dictionnaire[1:]:
+        largeur = len(dataset.donnees_covid.liste[0]) -1
+        longueur = len(dataset.donnees_covid.liste)
+        for donnees in dataset.donnees_covid.liste[1:]:
             var= var+(float(donnees[largeur])-moy)**2
         return var/longueur
 

@@ -7,11 +7,11 @@ import pandas as pd
     
 def nettoyage_dataset(dataset):
     dataset_sortie=dataset
-    for ligne in dataset_sortie.donnees_covid.dictionnaire:
+    for ligne in dataset_sortie.donnees_covid.liste:
         for i in range(len(ligne)-1,-1,-1):
                 if not type(ligne[i])== float:
                     del ligne[i]
-    return dataset_sortie.donnees_covid.dictionnaire[1:]
+    return dataset_sortie.donnees_covid.liste[1:]
 
     
 def distanceself(X1,X2):

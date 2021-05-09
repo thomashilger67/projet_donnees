@@ -21,7 +21,7 @@ class Agregation_Spatiale(Transformation):
         return(dep_region)
 
     def application_nationale(self,dataset): 
-        new_dataset=Selection_Var(self.var_selection,'covid').application_Covid(dataset)
+        new_dataset=Selection_Var(self.var_selection,'covid').application(dataset)
         somme=0
         if self.var_selection=="rad" or self.var_selection=="dc":
             indice_jour=dataset.donnees_covid[0].index("jour")
@@ -31,11 +31,11 @@ class Agregation_Spatiale(Transformation):
                     indice_sexe=dataset.donnees_covid[0].index("sexe")
             while dataset.donnees_covid[pos][indice_jour]==date:
                 if dataset.donnees_covid[pos][indice_sexe]==float(0):
-                    somme+=new_dataset[pos]
+                    somme+=new_dataset.donnees_covid[pos]
                 pos-=1
         else:
-            for i in range(1,len(new_dataset)):
-                somme+=new_dataset[i]
+            for i in range(1,len(new_dataset.donnees_covid)):
+                somme+=new_dataset.donnees_covid[i]
         return(Dataset([['Nationale',self.var_selection],['France',somme]])) 
 
     def application_regionale(self,dataset):
@@ -47,7 +47,7 @@ class Agregation_Spatiale(Transformation):
                 liste_dep.append(float(dep_region[i]["dep"]))
         
         indice_var=dataset.donnees_covid[0].index(self.var_selection)
-        data_dep=Selection_Var('dep','covid').application_Covid(dataset)
+        data_dep=Selection_Var('dep','covid').application(dataset)
       
         if self.var_selection=="rad" or self.var_selection=="dc":
             indice_jour=dataset.donnees_covid[0].index("jour")
@@ -56,12 +56,12 @@ class Agregation_Spatiale(Transformation):
             if 'sexe' in dataset.donnees_covid[0]:
                     indice_sexe=dataset.donnees_covid[0].index("sexe")
             while dataset.donnees_covid[pos][indice_jour]==date:
-                if dataset.donnees_covid[pos][indice_sexe]==float(0) and data_dep[pos] in liste_dep:
+                if dataset.donnees_covid[pos][indice_sexe]==float(0) and data_dep.donnees_covid[pos] in liste_dep:
                     somme+=dataset.donnees_covid[pos][indice_var]
                 pos-=1
         else:
-            for i in range(1,len(data_dep)):
-                if data_dep[i] in liste_dep:
+            for i in range(1,len(data_dep.donnees_covid)):
+                if data_dep.donnees_covid[i] in liste_dep:
                     somme+=dataset.donnees_covid[i][indice_var]
         return(Dataset([["Region",self.var_selection],[self.region,somme]]))
 
