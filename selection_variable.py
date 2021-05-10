@@ -1,5 +1,7 @@
 from dataset import Dataset
 from transformation import Transformation
+from donnees_covid import Covid 
+
 
 
 #comprendre application dans la classe transfo : l'appliquer à un argument 
@@ -12,11 +14,11 @@ class Selection_Var(Transformation):
     
     def application_Covid(self,dataset):
         new_list=[]
-        covid=dataset.donnees_covid
+        covid=dataset.donnees_covid.liste
         indice=covid[0].index(self.var_selection)
         for elt in covid:
-            new_list.append(elt[indice])
-        return(Dataset(new_list,dataset.donnees_vacances))
+            new_list.append([elt[indice]])
+        return(Dataset(Covid(None,None,new_list),dataset.donnees_vacances))
 
     def application_Vacance(self,dataset):
         vacances=dataset.donnees_vacances

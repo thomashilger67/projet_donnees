@@ -28,25 +28,34 @@ class Covid:
 
 
 
-    def __init__(self, jeu_de_donnee,jeu_de_donnee2=None):
+    def __init__(self, jeu_de_donnee=None,jeu_de_donnee2=None,jeu_de_donnee_format_liste=None):
         self.jeu_de_donnee = jeu_de_donnee
         self.jeu_de_donnee2= jeu_de_donnee2
-        data = []
-        with open(jeu_de_donnee, encoding='ISO-8859-1') as csvfile :
-            covidreader = csv.reader(csvfile,delimiter=';') 
-            for row in covidreader :
-                data.append(row)
-        
-        
-        for ligne in data:
-            for i in range(len(data[0])):
-                try :
-                    ligne[i]=float(ligne[i])
-                except :
-                    pass
-       
+        self.jeu_de_donnee_format_liste=jeu_de_donnee_format_liste
 
-        self.liste = data
+        if not self.jeu_de_donnee_format_liste:
+            data = []
+            with open(jeu_de_donnee, encoding='ISO-8859-1') as csvfile :
+                covidreader = csv.reader(csvfile,delimiter=';') 
+                for row in covidreader :
+                    data.append(row)
+            
+            
+            for ligne in data:
+                for i in range(len(data[0])):
+                    try :
+                        ligne[i]=float(ligne[i])
+                    except :
+                        pass
+            self.liste = data
+
+        else:
+            self.liste= self.jeu_de_donnee_format_liste
+
+                
+        
+
+        
 
     def __str__(self):
         for liste in self.liste : 
