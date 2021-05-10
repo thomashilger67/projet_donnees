@@ -48,5 +48,8 @@ class Covid:
 
         self.liste = data
 
+    def __str__(self):
+        for liste in self.liste : 
+            print(liste)
     
     

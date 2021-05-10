@@ -13,7 +13,7 @@ def nettoyage_dataset(dataset):
                     del ligne[i]
     return dataset_sortie.donnees_covid.liste[1:]
 
-    
+
 def distanceself(X1,X2):
     return (sum(X1-X2)**2)**(0.5)
 
