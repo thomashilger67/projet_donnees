@@ -17,7 +17,6 @@ class EstimationDescriptive(Estimation):
                 resu.append(['{}'.format(dataset.donnees_covid.liste[0][i]),sum/longueur])
         return resu 
 
-
     def variance(self,dataset):
         resu=[]
         largueur=len(dataset.donnees_covid.liste[0])
