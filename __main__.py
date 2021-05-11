@@ -8,6 +8,7 @@ from selection_variable import Selection_Var
 from agregation_spatiale import Agregation_Spatiale
 from jointure import Jointure
 from centrage import Centrage
+from normalisation import Normalisation
 
 
 a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.csv')
@@ -30,4 +31,4 @@ data=Selection_Var('numReg','covid').application(data)
 #print(EstimationMultivariee().Kmeans(data,2,2))
 
 #print(EstimationDescriptive().moyenne(data))
-print(Centrage('numReg','covid').application(data).donnees_covid.liste)
+print(Normalisation('numReg','covid').application(data).donnees_covid.liste)
