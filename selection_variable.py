@@ -10,7 +10,7 @@ class Selection_Var(Transformation):
 
     def __init__(self,var_selection,donnees): 
         super().__init__(var_selection,donnees)
-      
+              
     
     def application_Covid(self,dataset):
         new_list=[]
