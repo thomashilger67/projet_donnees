@@ -16,11 +16,23 @@ from carte.cartoplot import CartoPlot
 a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.csv')
 b=Vacance('./Donnees/vacances.json')
 c=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
+<<<<<<< HEAD
+#d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+data=Dataset(c)
+data.donnees_covid.liste[1]
+#print(data)
+=======
 d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+<<<<<<< HEAD
 data=Dataset(c)
 #print(data.donnees_covid.liste[0])
-#Sauvegarder(a.liste).SauvegarderCSV('test',sep=',')
+=======
+data=Dataset(d)
 
+>>>>>>> 0c3a1d44d2ec1db25dfc8e5f9dc297207f384039
+>>>>>>> c802e6aa5ae398559d68004f125845d41bd3ba5c
+#Sauvegarder(a.liste).SauvegarderCSV('test',sep=',')
+#Jointure('incid_hosp','vacance','Zone').application(data)
 
 #print(EstimationDescriptive().ecart_type(data))
 
@@ -29,10 +41,20 @@ data=Dataset(c)
 
 #print(Jointure('hosp','covid',"incid_hosp",data2).application(data))
 
+<<<<<<< HEAD
 #Selection_Var('numReg','covid').application(data).donnees_covid
+=======
+<<<<<<< HEAD
+data=(Selection_Var('jour','Covid').application(data))
+print(data.donnees_covid.liste[0])
+#print(data2)
+=======
+print(Selection_Var('numReg','covid').application(data).donnees_covid)
+>>>>>>> c802e6aa5ae398559d68004f125845d41bd3ba5c
 #print(data)
+>>>>>>> 0c3a1d44d2ec1db25dfc8e5f9dc297207f384039
 #Sauvegarder(Selection_Var('numReg','covid').application(data)).SauvegarderCSV('selection.csv')
-#print(Agregation_Spatiale("dc",'Covid','Occitanie').application(data))  #chiffre eh dessous des offciciels ???
+(Agregation_Spatiale("incid_hosp",'Covid','Occitanie').application(data))  #chiffre eh dessous des offciciels ???
 
 
 #print(EstimationMultivariee().Kmeans(data,2,2))

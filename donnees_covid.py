@@ -28,9 +28,8 @@ class Covid:
 
 
 
-    def __init__(self, jeu_de_donnee=None,jeu_de_donnee2=None,jeu_de_donnee_format_liste=None):
+    def __init__(self, jeu_de_donnee=None,jeu_de_donnee_format_liste=None):
         self.jeu_de_donnee = jeu_de_donnee
-        self.jeu_de_donnee2= jeu_de_donnee2
         self.jeu_de_donnee_format_liste=jeu_de_donnee_format_liste
 
         if not self.jeu_de_donnee_format_liste:
@@ -50,10 +49,7 @@ class Covid:
             self.liste = data
 
         else:
-            self.liste= self.jeu_de_donnee_format_liste
-
-                
-        
+            self.liste= self.jeu_de_donnee_format_liste     
 
         
 
