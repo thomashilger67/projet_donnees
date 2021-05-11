@@ -1,5 +1,6 @@
 from estimation import Estimation
 from dataset import Dataset
+from donnees_covid import Covid 
 
 class EstimationDescriptive(Estimation):
     def __init__(self):
@@ -15,7 +16,7 @@ class EstimationDescriptive(Estimation):
                 for donnees in dataset.donnees_covid.liste[1:]:
                     sum=sum +float(donnees[i])
                 resu.append(['{}'.format(dataset.donnees_covid.liste[0][i]),sum/longueur])
-        return resu 
+        return Dataset(Covid(None,None,resu),None)
 
     def variance(self,dataset):
         resu=[]
@@ -29,7 +30,7 @@ class EstimationDescriptive(Estimation):
                 for donnees in dataset.donnees_covid.liste[1:]:
                     var= var+(float(donnees[i])-moy)**2
                 resu.append(['{}'.format(dataset.donnees_covid.liste[0][i]),var/longueur])
-        return resu
+        return Dataset(Covid(None,None,resu),None)
 
     def ecart_type(self,dataset):
         resu=[]
@@ -37,7 +38,7 @@ class EstimationDescriptive(Estimation):
         for ligne in var:
             resu.append([ligne[0],ligne[1]**(0.5)])
 
-        return resu
+        return Dataset(Covid(None,None,resu),None)
 
 
     
