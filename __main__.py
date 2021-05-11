@@ -18,6 +18,8 @@ d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-
 
 data=Dataset(d)
 
+#print(EstimationDescriptive().ecart_type(data))
+
 
 data2=Dataset(c.liste)
 
