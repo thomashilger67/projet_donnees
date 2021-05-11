@@ -141,7 +141,7 @@ class Dataset:
 
     def __str__(self):
         modele = '\n'.join(["les données Covid sont : {}","les données des vacances sont : {}"])
-        return modele.format(self.donnees_covid,self.donnees_vacances)
+        return modele.format(self.donnees_covid.liste[0],self.donnees_vacances)
 
 
 
