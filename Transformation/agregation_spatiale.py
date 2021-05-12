@@ -167,10 +167,7 @@ class Agregation_Spatiale(Transformation):
                          
                     else:
                             pos0+=difference
-                            new_jour=donnees_covid[pos0][indice_jour]
-
-                    
-                    
+                            new_jour=donnees_covid[pos0][indice_jour] 
                
 
         else:
@@ -183,8 +180,10 @@ class Agregation_Spatiale(Transformation):
                 while i<len(var_dataset)-1:
                     jour=donnees_covid[i][indice_jour]
                     if donnees_covid[i][indice_dep] in region :
+                        dep=donnees_covid[i][indice_dep]
                         while jour==new_jour and i<len(var_dataset)-1 :
-                            somme+=var_dataset[i][0]
+                            if donnees_covid[i][indice_dep]==dep:
+                                somme+=var_dataset[i][0]
                             i+=1
                             new_jour=donnees_covid[i][indice_jour]
                         new_dataset.ajout_donnees_covid([region[0],donnees_covid[i][indice_jour],somme])
@@ -192,13 +191,10 @@ class Agregation_Spatiale(Transformation):
                         i+=1
                     else:
                         i+=1
-                        new_jour=donnees_covid[i][indice_jour]
-
-                    
-                           
+                        new_jour=donnees_covid[i][indice_jour]                 
                     
             
-        return(new_dataset.donnees_covid.liste)
+        #return(new_dataset.donnees_covid.liste)
 
     def application_Covid(self,dataset):
 
