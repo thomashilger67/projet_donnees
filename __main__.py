@@ -16,14 +16,17 @@ from carte.cartoplot import CartoPlot
 a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.csv')
 b=Vacance('./Donnees/vacances.json')
 c=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
-d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-data=Dataset(c)
 
-d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-data=Dataset(d,b)
+#d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+
+
+#d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+data=Dataset(a,b.dictionnaire)
+
+print(a.liste[0].index("dc"))
 #print(b.dictionnaire)
 
-Sauvegarder(data).SauvegarderCSV('sauvegarde')
+#Sauvegarder(data).SauvegarderCSV('sauvegarde')
 
 
 #Sauvegarder(a.liste).SauvegarderCSV('test',sep=',')
@@ -37,11 +40,11 @@ data2=Dataset(a)
 
 #print((Jointure('incid_hosp','vacance',"Zone").application(data)))
 
-#(Selection_Var('jour','Covid').application(data))
+print(Selection_Var('jour','Covid').application(data))
 
 #print(data2)
 #Sauvegarder(Selection_Var('numReg','covid').application(data)).SauvegarderCSV('selection.csv')
-print((Agregation_Spatiale("incid_hosp",'Covid','region').application(data)))  #chiffre eh dessous des offciciels ???
+print((Agregation_Spatiale("dc",'Covid').application(data)))  #chiffre eh dessous des offciciels ???
 
 #Selection_Var('numReg','covid').application(data).donnees_covid
 
