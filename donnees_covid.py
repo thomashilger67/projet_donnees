@@ -58,7 +58,7 @@ class Covid:
             self.liste = data
 
         else:
-            self.liste= self.jeu_de_donnee_format_liste     
+            self.liste= jeu_de_donnee_format_liste     
 
         
 
