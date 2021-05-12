@@ -8,6 +8,45 @@ from Transformation.transformation import Transformation
 
 class Agregation_Spatiale(Transformation):
 
+    ''' Classe héritant de la classe Transformation. Elle permet de transformer la granularité départementale 
+        en granularité nationale ou régionale
+    
+    Parameters
+    ----------
+
+    donnees : str
+        type de donnée : covid ou vacance
+    
+    var_selection : str
+        éventuelle variable étudiée lors de la tansformation
+
+    date_debut : str
+        Date débutant la période étudiée.
+    
+    date_fin : str
+        Date finissant la période étudiée.
+    
+    Attributs 
+    ---------
+
+    donnees : str
+        type de donnée : covid ou vacance
+    
+    var_selection : str
+        éventuelle variable étudiée lors de la tansformation
+
+    region : str
+        chaine de caractère indiquant que l'on veut effectuer une granularité régionale : 'region' 
+    
+        
+    Example 
+    -------
+     >>> d=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.csv')
+     >>> b=Vacance('./Donnees/vacances.json')
+     >>> data= Dataset(d,b)
+     >>> print(Agregation('hosp', 'covid','region').application(data))
+    
+    '''
     
     def __init__(self,var_selection,donnees,region=None):
         super().__init__(var_selection,donnees)
@@ -181,6 +220,7 @@ class Agregation_Spatiale(Transformation):
                     jour=donnees_covid[i][indice_jour]
                     if donnees_covid[i][indice_dep] in region :
                         dep=donnees_covid[i][indice_dep]
+                        print(dep)
                         while jour==new_jour and i<len(var_dataset)-1 :
                             if donnees_covid[i][indice_dep]==dep:
                                 somme+=var_dataset[i][0]
@@ -194,7 +234,7 @@ class Agregation_Spatiale(Transformation):
                         new_jour=donnees_covid[i][indice_jour]                 
                     
             
-        #return(new_dataset.donnees_covid.liste)
+        return(new_dataset.donnees_covid.liste)
 
     def application_Covid(self,dataset):
 

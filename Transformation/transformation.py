@@ -1,32 +1,7 @@
 from abc import ABC, abstractmethod
 
 class Transformation(ABC):
-    ''' Classe abstraite permettant d'effectuer une transformation sur un Dataset.
-
-     
-     Parameters
-     ----------
-
-     donnees : str
-         type de donnée : covid ou vacance
-     
-     var_selection : str
-         éventuelle variable étudiée lors de la tansformation
-
-     Attributs 
-     ---------
-
-     donnees : str
-         type de donnée : covid ou vacance
-     
-     var_selection : str
-         éventuelle variable étudiée lors de la tansformation
-
-     Example 
-     -------
-     '''
-
-
+   
     ''' Classe abstraite permettant d'effectuer une transformation sur un Dataset.
 
     
