@@ -19,12 +19,11 @@ c=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-
 d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
 data=Dataset(c)
 
-f = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-print(f.liste[0])
-
 d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
 data=Dataset(d,b)
-#print(data)
+#print(b.dictionnaire)
+
+Sauvegarder(data).SauvegarderCSV('sauvegarde')
 
 
 #Sauvegarder(a.liste).SauvegarderCSV('test',sep=',')

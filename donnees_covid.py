@@ -70,8 +70,7 @@ class Covid:
         ---------
         str 
             description de l'article 
-        '''
-        for liste in self.liste : 
-            print(liste)
+        '''        
+        return(str(self.liste))
     
     
