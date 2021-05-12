@@ -37,6 +37,37 @@ class Selection_Var(Transformation):
 
      '''
 
+    ''' Classe héritant de la classe Transformation. Elle permet de selectionner une variable dans un Dataset.
+
+    
+    Parameters
+    ----------
+
+    donnees : str
+        type de donnée : covid ou vacance
+    
+    var_selection : str
+        éventuelle variable étudiée lors de la tansformation
+
+    Attributs 
+    ---------
+
+    donnees : str
+        type de donnée : covid ou vacance
+    
+    var_selection : str
+        éventuelle variable étudiée lors de la tansformation
+
+    Example 
+    -------
+
+    >>> d = Dataset(Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv'),Vacance('./Donnees/vacances.json'))
+    >>> s = Selection_Var('incid_rea','covid')
+    >>> print(s.application(d.donnees_covid))
+
+    '''
+    
+    
     def __init__(self,var_selection,donnees): 
         super().__init__(var_selection,donnees)
               

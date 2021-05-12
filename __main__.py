@@ -9,8 +9,8 @@ from Transformation.agregation_spatiale import Agregation_Spatiale
 from Transformation.jointure import Jointure
 from Transformation.centrage import Centrage
 from Transformation.normalisation import Normalisation
-from Sauvegarder.sauvegarder import Sauvegarder
-from Sauvegarder.carte.cartoplot import CartoPlot
+#from Sauvegarder.sauvegarder import Sauvegarder
+#from Sauvegarder.carte.cartoplot import CartoPlot
 from Transformation.fenetrage import Fenetrage
 from Transformation.moyenne_glissante import Moyenne_glissante
 
@@ -19,25 +19,31 @@ a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.
 b=Vacance('./Donnees/vacances.json')
 c=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
 
-d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-data=Dataset(d)
+#d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+#data=Dataset(d)
 
-print(Moyenne_glissante('numReg', 'covid', 20).application(data).donnees_covid.liste)
+#print(Moyenne_glissante('numReg', 'covid', 20).application(data).donnees_covid.liste)
 
 #Sauvegarder(Normalisation('numReg','covid').application(data)).SauvegarderCSV('normal')
 #print(Fenetrage('numReg', 'covid', '2020-03-019', '2020-03-20').application(Dataset(d)).donnees_covid)
 
 
 #Sauvegarder(a.liste).SauvegarderCSV('test',sep=',')
-#Jointure('incid_hosp','vacance','Zone').application(data)
+
 
 #print(EstimationDescriptive().ecart_type(data))
 
 
-#data2=Dataset(c.liste)
+data=Dataset(a,b.dictionnaire)
+#print(Covid(None,[["Academie"],['France']]))
 
-#print(Jointure('hosp','covid',"incid_hosp",data2).application(data))
+#print((Jointure('incid_hosp','vacance',"Zone").application(data)))
 
+#print(Selection_Var('jour','Covid').application(data))
+
+#print(data2)
+#Sauvegarder(Selection_Var('numReg','covid').application(data)).SauvegarderCSV('selection.csv')
+print((Agregation_Spatiale("hosp",'Covid',"region").application(data)))  #chiffre eh dessous des offciciels ???
 
 #Selection_Var('numReg','covid').application(data).donnees_covid
 

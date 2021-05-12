@@ -73,9 +73,10 @@ class Dataset:
         '''    
         
         if position==-1:
-            self.donnees_covid.append(new_donnee)
+            
+            self.donnees_covid.liste.append(new_donnee)
         else:
-            self.donnees_covid.insert(position,new_donnee)
+            self.donnees_covid.liste.insert(position,new_donnee)
     
     def suppr_donnees_covid(self,position=-1):
 
@@ -94,7 +95,7 @@ class Dataset:
 
         '''    
 
-        del(self.donnees_covid[position])
+        del(self.donnees_covid.liste[position])
 
     def ajout_donnees_vacances(self,cle,new_vac):
         '''Ajoute une donnée liée au Covid à donnees_covid

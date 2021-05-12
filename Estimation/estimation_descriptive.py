@@ -5,14 +5,14 @@ from Donnees.donnees_covid import Covid
 class EstimationDescriptive(Estimation):
 
     ''' Classe héritant de la classe Estimation. Elle permet d'effectuer des estimations descriptives sur un dataset, 
-     notamment calculer une moyenne, une variance ou un écart-type.
+    notamment calculer une moyenne, une variance ou un écart-type.
 
-     Examples
-     ----------
-     >>> d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-     >>> b=Vacance('./Donnees/vacances.json')
-     >>> data= Dataset(d,b)
-     >>> print(EstimationDescriptive().moyenne(data))
+    Examples
+    ----------
+    >>> d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+    >>> b=Vacance('./Donnees/vacances.json')
+    >>> data= Dataset(d,b)
+    >>> print(EstimationDescriptive().moyenne(data))
 
      
     '''

@@ -48,8 +48,7 @@ class Covid:
                 covidreader = csv.reader(csvfile,delimiter=';') 
                 for row in covidreader :
                     data.append(row)
-            
-            
+                        
             for ligne in data:
                 for i in range(len(data[0])):
                     try :
