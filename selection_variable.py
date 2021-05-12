@@ -18,7 +18,7 @@ class Selection_Var(Transformation):
         indice=covid[0].index(self.var_selection)
         for elt in covid:
             new_list.append([elt[indice]])
-        return(Dataset(Covid(None,None,new_list),dataset.donnees_vacances))
+        return(Dataset(Covid(None,new_list),dataset.donnees_vacances))
 
     def application_Vacance(self,dataset):
         vacances=dataset.donnees_vacances

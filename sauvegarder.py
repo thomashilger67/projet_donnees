@@ -14,5 +14,6 @@ class Sauvegarder:
         writer.writerows(self.donnees_a_sauvgarder.donnees_covid.liste)
 
     def carte(self,nom_de_la_carte):
+        pass
                 
 
