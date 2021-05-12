@@ -40,6 +40,10 @@ class Fenetrage(Transformation):
     
     Example 
     -------
+     >>> d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+     >>> b=Vacance('./Donnees/vacances.json')
+     >>> data= Dataset(d,b)
+     >>> print(Fenetrage('NumReg', 'covid', '2020-03-019', '2020-03-20').application(Dataset(d)).donnees_covid)
     
     '''
     def __init__(self,var_selection,donnees,date_debut,date_fin):

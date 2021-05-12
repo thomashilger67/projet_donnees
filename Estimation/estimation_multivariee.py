@@ -42,6 +42,14 @@ class EstimationMultivariee(Estimation):
     ''' Classe héritant de la classe Estimation. Elle permet d'effectuer des estimations multivariées sur un dataset, 
      notamment l'algorithme de k-means.
      
+
+     Examples
+     ----------
+     >>> d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+     >>> b=Vacance('./Donnees/vacances.json')
+     >>> data= Dataset(d,b)
+     >>> print(EstimationMultivariee().kmeans(data,2,10))
+     
      '''
 
     

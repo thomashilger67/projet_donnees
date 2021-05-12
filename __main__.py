@@ -9,8 +9,8 @@ from Transformation.agregation_spatiale import Agregation_Spatiale
 from Transformation.jointure import Jointure
 from Transformation.centrage import Centrage
 from Transformation.normalisation import Normalisation
-from Sauvegarder.sauvegarder import Sauvegarder
-from Sauvegarder.carte.cartoplot import CartoPlot
+from sauvegarder.sauvegarder import Sauvegarder
+from sauvegarder.carte.cartoplot import CartoPlot
 from Transformation.fenetrage import Fenetrage
 
 
@@ -21,8 +21,9 @@ d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-
 
 d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
 data=Dataset(d,b)
-print(EstimationDescriptive().moyenne(data))
 
+print(EstimationDescriptive().ecart_type(data).donnees_covid.liste)
+#Sauvegarder(Normalisation('numReg','covid').application(data)).SauvegarderCSV('normal')
 #print(Fenetrage('NumReg', 'covid', '2020-03-019', '2020-03-20').application(Dataset(d)).donnees_covid)
 
 
