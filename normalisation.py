@@ -23,5 +23,3 @@ class Normalisation(Transformation):
 
     def application_Vacance(self, dataset):
         pass
-
-

@@ -16,21 +16,17 @@ from carte.cartoplot import CartoPlot
 a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.csv')
 b=Vacance('./Donnees/vacances.json')
 c=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
-<<<<<<< HEAD
-#d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-data=Dataset(c)
-data.donnees_covid.liste[1]
-#print(data)
-=======
 d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-<<<<<<< HEAD
 data=Dataset(c)
-#print(data.donnees_covid.liste[0])
-=======
-data=Dataset(d)
 
->>>>>>> 0c3a1d44d2ec1db25dfc8e5f9dc297207f384039
->>>>>>> c802e6aa5ae398559d68004f125845d41bd3ba5c
+f = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+print(f.liste[0])
+
+d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+data=Dataset(d,b)
+#print(data)
+
+
 #Sauvegarder(a.liste).SauvegarderCSV('test',sep=',')
 #Jointure('incid_hosp','vacance','Zone').application(data)
 
@@ -41,20 +37,18 @@ data=Dataset(d)
 
 #print(Jointure('hosp','covid',"incid_hosp",data2).application(data))
 
-<<<<<<< HEAD
+
 #Selection_Var('numReg','covid').application(data).donnees_covid
-=======
-<<<<<<< HEAD
-data=(Selection_Var('jour','Covid').application(data))
-print(data.donnees_covid.liste[0])
+
+
+#data=(Selection_Var('jour','Covid').application(data))
+#print(data.donnees_covid.liste[0])
 #print(data2)
-=======
-print(Selection_Var('numReg','covid').application(data).donnees_covid)
->>>>>>> c802e6aa5ae398559d68004f125845d41bd3ba5c
-#print(data)
->>>>>>> 0c3a1d44d2ec1db25dfc8e5f9dc297207f384039
+
+#print(Selection_Var('numReg','covid').application(data).donnees_covid)
+
 #Sauvegarder(Selection_Var('numReg','covid').application(data)).SauvegarderCSV('selection.csv')
-(Agregation_Spatiale("incid_hosp",'Covid','Occitanie').application(data))  #chiffre eh dessous des offciciels ???
+#Agregation_Spatiale("incid_hosp",'Covid','Occitanie').application(data))  #chiffre eh dessous des offciciels ???
 
 
 #print(EstimationMultivariee().Kmeans(data,2,2))
@@ -63,13 +57,3 @@ print(Selection_Var('numReg','covid').application(data).donnees_covid)
 
 #Sauvegarder(EstimationDescriptive().moyenne(data)).SauvegarderCSV('moyenne',';')
 #print(Normalisation('numReg','covid').application(data).donnees_covid.liste)
-
-
-#############CARTE#########
-cp = CartoPlot()
-
-d = {}
-d['Betagni'] = 1
-fig = cp.plot_reg_map(data=d,x_lim=(-6, 10), y_lim=(41, 52))
-fig.show()
-fig.savefig('regions.test.jpg')

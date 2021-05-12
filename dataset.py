@@ -140,6 +140,15 @@ class Dataset:
         del((self.donnees_vacances[cle])[id])
 
     def __str__(self):
+        ''' renvoie une chaîne de caractère qui décrit l'ensemble du contenu du Dataset
+
+        Returns 
+        ---------
+        str
+            description du dataset
+        
+        '''
+
         modele = '\n'.join(["les données Covid sont : {}","les données des vacances sont : {}"])
         return modele.format(self.donnees_covid.liste[0],self.donnees_vacances)
 

@@ -13,8 +13,8 @@ class Vacance:
     Attributs 
     _________
 
-    jeu_de_donnees : str
-        chemin d'accès aux fichiers json
+    dictionnaire : dictionnaire
+        dictionnaire décrivant l'ensemble de l'objet Vacances
 
     Example 
     _______
@@ -26,6 +26,15 @@ class Vacance:
 
 
     def __init__(self, jeu_de_donnee):
+        '''
+        Création d'un objet Vacances
+
+        Parameters 
+        -----------
+        jeu_de_donnee : str
+            chemin d'accès au fichier json
+        
+        '''
         self.jeu_de_donnee=jeu_de_donnee
         data = []
         with open (jeu_de_donnee) as json_file:
