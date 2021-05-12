@@ -40,6 +40,12 @@ def calc_centroids(clusters, X):
 
 class EstimationMultivariee(Estimation):
     
+    ''' Classe héritant de la classe Estimation. Elle permet d'effectuer des estimations multivariées sur un dataset, 
+    notamment l'algorithme de k-means.
+    
+    '''
+    
+    
     def __init__(self):
         pass
 

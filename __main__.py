@@ -16,10 +16,14 @@ from carte.cartoplot import CartoPlot
 a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.csv')
 b=Vacance('./Donnees/vacances.json')
 c=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
-#d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-data=Dataset(c,b.dictionnaire)
+d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+data=Dataset(c)
 
+d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+data=Dataset(d,b)
+#print(b.dictionnaire)
 
+Sauvegarder(data).SauvegarderCSV('sauvegarde')
 
 
 #Sauvegarder(a.liste).SauvegarderCSV('test',sep=',')
@@ -39,6 +43,18 @@ data2=Dataset(a)
 #Sauvegarder(Selection_Var('numReg','covid').application(data)).SauvegarderCSV('selection.csv')
 print((Agregation_Spatiale("incid_hosp",'Covid','region').application(data)))  #chiffre eh dessous des offciciels ???
 
+#Selection_Var('numReg','covid').application(data).donnees_covid
+
+
+#data=(Selection_Var('jour','Covid').application(data))
+#print(data.donnees_covid.liste[0])
+#print(data2)
+
+#print(Selection_Var('numReg','covid').application(data).donnees_covid)
+
+#Sauvegarder(Selection_Var('numReg','covid').application(data)).SauvegarderCSV('selection.csv')
+#Agregation_Spatiale("incid_hosp",'Covid','Occitanie').application(data))  #chiffre eh dessous des offciciels ???
+
 
 #print(EstimationMultivariee().Kmeans(data,2,2))
 #print(type(EstimationDescriptive().moyenne(data)))
@@ -46,14 +62,3 @@ print((Agregation_Spatiale("incid_hosp",'Covid','region').application(data)))  #
 
 #Sauvegarder(EstimationDescriptive().moyenne(data)).SauvegarderCSV('moyenne',';')
 #print(Normalisation('numReg','covid').application(data).donnees_covid.liste)
-
-############################CARTE##########################
-cp=CartoPlot(())
-d = {}
-for i in range(1, 101):
-   d[str(i)] = i
-
-
-fig = cp.plot_dep_map(data=d, x_lim=(-6, 10), y_lim=(41, 52))
-fig.show()
-fig.savefig('departements.test.jpg')

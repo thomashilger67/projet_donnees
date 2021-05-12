@@ -3,6 +3,13 @@ from dataset import Dataset
 from donnees_covid import Covid 
 
 class EstimationDescriptive(Estimation):
+
+    ''' Classe héritant de la classe Estimation. Elle permet d'effectuer des estimations descriptives sur un dataset, 
+    notamment calculer une moyenne, une variance ou un écart-type.
+    
+    '''
+    
+    
     def __init__(self):
         pass
         

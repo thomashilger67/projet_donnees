@@ -1,5 +1,6 @@
 from dataset import Dataset
 import csv
+import json 
 
 class Sauvegarder:
 
@@ -7,13 +8,17 @@ class Sauvegarder:
         self.donnees_a_sauvgarder=donnees_a_sauvgarder
 
     def SauvegarderCSV(self,nom_du_fichier):
-        
-       
-       with open(nom_du_fichier, 'w', newline='') as file:
-        writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC,delimiter=';')
-        writer.writerows(self.donnees_a_sauvgarder.donnees_covid.liste)
+        if self.donnees_a_sauvgarder.donnees_vacances is None :
 
-    def carte(self,nom_de_la_carte):
-        pass
-                
-
+            with open('{}.csv'.format(nom_du_fichier), 'w', newline='') as file:
+                writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC,delimiter=';')
+                writer.writerows(self.donnees_a_sauvgarder.donnees_covid.liste)
+        else : 
+            with open('{}.csv'.format(nom_du_fichier), 'w', newline='') as file:
+                writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC,delimiter=';')
+                writer.writerows(self.donnees_a_sauvgarder.donnees_covid.liste)
+            with open('{}_vacances.csv'.format(nom_du_fichier), 'w',newline='') as file :
+                writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC,delimiter=';')
+                for key,ligne in self.donnees_a_sauvgarder.donnees_vacances.dictionnaire.items():
+                    for element in ligne:
+                        writer.writerows(ligne)

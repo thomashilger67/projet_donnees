@@ -1,38 +1,48 @@
 import csv
 
 class Covid:
-
-    ''' importe les données Covid et les transforme en dictionnnaire
+    ''' importe les données Covid et les transforment en liste
 
     
     Parameters
     ----------
 
     jeu_de_donnees : str
-        chemin d'accès aux fichiers csv
+        chemin d'accès au fichier csv
+    
+    jeu_de_donnees_format_liste : list
+        list que l'on veut transfomrer en objet Covid
 
     Attributs 
     ---------
 
-    jeu_de_donnees : str
-        chemin d'accès aux fichiers csv
+    liste : list
+        liste contenant les données 
 
     Example 
     -------
 
     >>> a = Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-    >>> print(a.dictionnaire)
-    >>> d = { Date : '2020-09-23', Région : 'Occitanie', NumRégion : '76', TauxIncidRea : '10' }  
-
+    >>> print(a.list)
+    [['jour', 'nomReg', 'numReg', 'incid_rea']... 
     '''
 
 
 
     def __init__(self, jeu_de_donnee=None,jeu_de_donnee_format_liste=None):
-        self.jeu_de_donnee = jeu_de_donnee
-        self.jeu_de_donnee_format_liste=jeu_de_donnee_format_liste
+        '''
+        construit un objet direct 
 
-        if not self.jeu_de_donnee_format_liste:
+        Parameters
+        -----------
+        jeu_de_donnee : str
+            chemin d'accès au fichier csv
+
+        jeu_de_donnee_format_liste : liste
+            liste à transformer en Covid
+
+        '''
+        if not jeu_de_donnee_format_liste:
             data = []
             with open(jeu_de_donnee, encoding='ISO-8859-1') as csvfile :
                 covidreader = csv.reader(csvfile,delimiter=';') 
@@ -53,7 +63,13 @@ class Covid:
         
 
     def __str__(self):
-        for liste in self.liste : 
-            return(liste)
+        '''Chaîne décrivant l'ensemble des données contenu dans Covid 
+
+        Returns 
+        ---------
+        str 
+            description de l'article 
+        '''        
+        return(str(self.liste))
     
     
