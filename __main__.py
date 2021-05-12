@@ -9,8 +9,8 @@ from Transformation.agregation_spatiale import Agregation_Spatiale
 from Transformation.jointure import Jointure
 from Transformation.centrage import Centrage
 from Transformation.normalisation import Normalisation
-from sauvegarder.sauvegarder import Sauvegarder
-from sauvegarder.carte.cartoplot import CartoPlot
+from Sauvegarder.sauvegarder import Sauvegarder
+from Sauvegarder.carte.cartoplot import CartoPlot
 from Transformation.fenetrage import Fenetrage
 from Transformation.moyenne_glissante import Moyenne_glissante
 
