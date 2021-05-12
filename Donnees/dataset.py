@@ -1,4 +1,5 @@
-from Donnees.donnees_covid import Covid
+
+import Donnees.donnees_covid 
 from Donnees.donnees_vacances import Vacance
 
 class Dataset:

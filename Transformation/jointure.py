@@ -50,8 +50,8 @@ class Jointure(Transformation):
         donnees_covid=dataset.donnees_covid
         donnees_covid2=self.dataset2.donnees_covid
         
-        indice_jour=donnees_covid[0].index("jour")
-        indice_jour2=donnees_covid2[0].index("jour")
+        indice_jour=donnees_covid.liste[0].index("jour")
+        indice_jour2=donnees_covid2.liste[0].index("jour")
         new_dataset=Dataset([],dataset.donnees_vacances)
         indice_sexe=None
         
