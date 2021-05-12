@@ -42,7 +42,7 @@ class Covid:
             liste à transformer en Covid
 
         '''
-        if not jeu_de_donnee_format_liste:
+        if  jeu_de_donnee_format_liste is None:
             data = []
             with open(jeu_de_donnee, encoding='ISO-8859-1') as csvfile :
                 covidreader = csv.reader(csvfile,delimiter=';') 

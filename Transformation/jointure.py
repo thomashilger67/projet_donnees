@@ -1,9 +1,45 @@
-from dataset import Dataset
-from transformation import Transformation
-from selection_variable import Selection_Var
-from donnees_covid import Covid
+from Donnees.dataset import Dataset
+from Transformation.transformation import Transformation
+from Transformation.selection_variable import Selection_Var
 
 class Jointure(Transformation):
+    ''' Classe héritant de la classe Transformation. Elle permet de joindre une variable d'un Dataset à un second Dataset.
+
+     
+     Parameters
+     ----------
+
+     donnees : str
+         type de donnée : covid ou vacance
+     
+     var_selection : str
+         éventuelle variable étudiée lors de la tansformation
+
+     var_jointure : str
+         Variable ajoutée lors de la transformation
+     
+     dataset2 : Dataset
+         Dataset contenant la variable à ajouter
+     
+     Attributs 
+     ---------
+
+     donnees : str
+         type de donnée : covid ou vacance
+     
+     var_selection : str
+         éventuelle variable étudiée lors de la tansformation
+
+     var_jointure : str
+         Variable ajoutée lors de la transformation
+     
+     dataset2 : Dataset
+         Dataset contenant la variable à ajouter
+     
+     Example 
+     -------
+     
+    '''
     
     ''' Classe héritant de la classe Transformation. Elle permet de joindre une variable d'un Dataset à un second Dataset.
 

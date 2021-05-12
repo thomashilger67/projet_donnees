@@ -1,5 +1,5 @@
-from estimation_descriptive import Estimation
-from dataset import Dataset
+from Estimation.estimation_descriptive import Estimation
+from Donnees.dataset import Dataset
 import matplotlib.pyplot as plt 
 import random 
 import numpy as np
@@ -39,6 +39,19 @@ def calc_centroids(clusters, X):
     return new_centroids
 
 class EstimationMultivariee(Estimation):
+    ''' Classe héritant de la classe Estimation. Elle permet d'effectuer des estimations multivariées sur un dataset, 
+     notamment l'algorithme de k-means.
+     
+
+     Examples
+     ----------
+     >>> d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+     >>> b=Vacance('./Donnees/vacances.json')
+     >>> data= Dataset(d,b)
+     >>> print(EstimationMultivariee().kmeans(data,2,10))
+     
+     '''
+
     
     ''' Classe héritant de la classe Estimation. Elle permet d'effectuer des estimations multivariées sur un dataset, 
     notamment l'algorithme de k-means.

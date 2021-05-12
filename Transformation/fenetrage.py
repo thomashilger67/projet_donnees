@@ -1,7 +1,10 @@
-from transformation import Transformation
+from Transformation.transformation import Transformation
+from Donnees.dataset import Dataset 
+from Donnees.donnees_covid import Covid
+from Donnees.donnees_vacances import Vacance
 
 class Fenetrage(Transformation):
-    
+        
     ''' Classe héritant de la classe Transformation. Elle permet de selectionner les donneés d'un dataset 
     sur une plage temporelle finis.
     
@@ -37,10 +40,12 @@ class Fenetrage(Transformation):
     
     Example 
     -------
+     >>> d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+     >>> b=Vacance('./Donnees/vacances.json')
+     >>> data= Dataset(d,b)
+     >>> print(Fenetrage('NumReg', 'covid', '2020-03-019', '2020-03-20').application(Dataset(d)).donnees_covid)
     
     '''
-    
-    
     def __init__(self,var_selection,donnees,date_debut,date_fin):
         super().__init__(var_selection,donnees)
         self.date_fin = date_fin
@@ -54,6 +59,7 @@ class Fenetrage(Transformation):
             list_date.append([int(y) for y in x[indice_date].split('-')])
         debut = [int(x) for x in self.date_debut.split('-')]
         fin = [int(x) for x in self.date_fin.split('-')]
+
         def convient(date):
             if not(debut[0]<=date[0]<=fin[0]):
                 return False
@@ -68,7 +74,7 @@ class Fenetrage(Transformation):
             date = list_date[i]
             if convient(date):
                 new_jeu_covid.append(list_covid[i+1])
-        return new_jeu_covid
+        return Dataset(Covid(None,new_jeu_covid),dataset.donnees_vacances)
 
     def application_Vacance(self, dataset):
         vacances = dataset.donnees_vacances.dictionnaire
@@ -90,5 +96,5 @@ class Fenetrage(Transformation):
                 vac_fin = [int(x) for x in vacances['Calendrier'][i]['Fin'].split('-')]
                 if convient(vac_debut) and convient(vac_fin):
                     list_calendrier.append(vacances['Calendrier'][i])
-        return {'Calendrier': list_calendrier, 'Academie': vacances['Academie']}
+        return Dataset(dataset.donnees_covid,Vacance(None,{'Calendrier': list_calendrier, 'Academie': vacances['Academie']}))
 

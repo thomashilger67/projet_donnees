@@ -1,8 +1,8 @@
-from dataset import Dataset
-from selection_variable import Selection_Var
-from donnees_vacances import Vacance
-from donnees_covid import Covid
-from transformation import Transformation
+from Donnees.dataset import Dataset
+from Transformation.selection_variable import Selection_Var
+from Donnees.donnees_vacances import Vacance
+from Donnees.donnees_covid import Covid
+from Transformation.transformation import Transformation
 
 
 

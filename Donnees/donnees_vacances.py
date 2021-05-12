@@ -25,7 +25,7 @@ class Vacance:
     '''
 
 
-    def __init__(self, jeu_de_donnee):
+    def __init__(self, jeu_de_donnee=None,jeu_de_donnee_format_dico=None):
         '''
         Création d'un objet Vacances
 
@@ -33,13 +33,21 @@ class Vacance:
         -----------
         jeu_de_donnee : str
             chemin d'accès au fichier json
+
+        jeu_de_donnee : dictionnaire
+            dictionnaire qu'on veut transformer en dictionnaire 
         
         '''
-        self.jeu_de_donnee=jeu_de_donnee
-        data = []
-        with open (jeu_de_donnee) as json_file:
-            data  = json.load(json_file)
-        self.dictionnaire=data 
+        if not jeu_de_donnee is None :
+
+            self.jeu_de_donnee=jeu_de_donnee
+            data = []
+            with open (jeu_de_donnee) as json_file:
+                data  = json.load(json_file)
+        
+            self.dictionnaire=data 
+        else : 
+            self.dictionnaire=jeu_de_donnee_format_dico
 
 
         
