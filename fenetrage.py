@@ -1,6 +1,46 @@
 from transformation import Transformation
 
 class Fenetrage(Transformation):
+    
+    ''' Classe héritant de la classe Transformation. Elle permet de selectionner les donneés d'un dataset 
+    sur une plage temporelle finis.
+    
+    Parameters
+    ----------
+
+    donnees : str
+        type de donnée : covid ou vacance
+    
+    var_selection : str
+        éventuelle variable étudiée lors de la tansformation
+
+    date_debut : str
+        Date débutant la période étudiée.
+    
+    date_fin : str
+        Date finissant la période étudiée.
+    
+    Attributs 
+    ---------
+
+    donnees : str
+        type de donnée : covid ou vacance
+    
+    var_selection : str
+        éventuelle variable étudiée lors de la tansformation
+
+    date_debut : str
+        Date débutant la période étudiée.
+    
+    date_fin : str
+        Date finissant la période étudiée.
+    
+    Example 
+    -------
+    
+    '''
+    
+    
     def __init__(self,var_selection,donnees,date_debut,date_fin):
         super().__init__(var_selection,donnees)
         self.date_fin = date_fin

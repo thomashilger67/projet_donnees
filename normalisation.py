@@ -5,7 +5,34 @@ from centrage import Centrage
 from estimation_descriptive import EstimationDescriptive
 
 class Normalisation(Transformation):
+    
+    ''' Classe héritant de la classe Transformation. Elle permet de centrer et réduire une variable dans un Dataset.
 
+    
+    Parameters
+    ----------
+
+    donnees : str
+        type de donnée : covid ou vacance
+    
+    var_selection : str
+        éventuelle variable étudiée lors de la tansformation
+
+    Attributs 
+    ---------
+
+    donnees : str
+        type de donnée : covid ou vacance
+    
+    var_selection : str
+        éventuelle variable étudiée lors de la tansformation
+
+    Example 
+    -------
+    
+    
+    '''
+    
     def __init__(self,var_selection,donnees):
         super().__init__(var_selection,donnees)
 
