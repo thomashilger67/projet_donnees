@@ -12,19 +12,20 @@ from Transformation.normalisation import Normalisation
 from sauvegarder.sauvegarder import Sauvegarder
 from sauvegarder.carte.cartoplot import CartoPlot
 from Transformation.fenetrage import Fenetrage
+from Transformation.moyenne_glissante import Moyenne_glissante
 
 
 a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.csv')
 b=Vacance('./Donnees/vacances.json')
 c=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
-d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
 
 d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
-data=Dataset(d,b)
+data=Dataset(d)
 
-print(EstimationDescriptive().ecart_type(data).donnees_covid.liste)
+print(Moyenne_glissante('numReg', 'covid', 20).application(data).donnees_covid.liste)
+
 #Sauvegarder(Normalisation('numReg','covid').application(data)).SauvegarderCSV('normal')
-#print(Fenetrage('NumReg', 'covid', '2020-03-019', '2020-03-20').application(Dataset(d)).donnees_covid)
+#print(Fenetrage('numReg', 'covid', '2020-03-019', '2020-03-20').application(Dataset(d)).donnees_covid)
 
 
 #Sauvegarder(a.liste).SauvegarderCSV('test',sep=',')
