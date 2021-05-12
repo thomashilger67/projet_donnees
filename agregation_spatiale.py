@@ -117,7 +117,6 @@ class Agregation_Spatiale(Transformation):
         indice_dep=donnees_covid[0].index("dep")
         
 
-
         if 'sexe' in dataset.donnees_covid.liste[0]:
             indice_sexe=dataset.donnees_covid.liste[0].index("sexe")
 

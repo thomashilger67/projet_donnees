@@ -46,7 +46,4 @@ class Transformation(ABC):
     def application(self,dataset):
         return(self.application_Covid(dataset) if self.donnees.lower()=='covid' else self.application_Vacance(dataset) )
         
-    #def __str__(self):
-       # return "Les résultats sont les suivants : {}".format(self.application(dataset))
-
-    #nefonctionne pas je ne sais pas comment faire pour appeler dataset sans le mettre en données_init
+    
