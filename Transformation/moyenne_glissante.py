@@ -1,13 +1,36 @@
 from Transformation.transformation import Transformation
 
 class Moyenne_glissante(Transformation):
-    """[summary]
+    '''Classe héritant de la classe Transformation. Elle permet de la moyenne glissante d'une variable dans un Dataset.
 
-    Args:
-        Transformation ([type]): [description]
-    """
-    
-    
+     
+     Parameters
+     ----------
+
+     donnees : str
+         type de donnée : covid ou vacance
+     
+     var_selection : str
+         éventuelle variable étudiée lors de la tansformation
+
+     time : int
+         Plage de la moyenne glissante
+     
+     Attributs 
+     ---------
+
+     donnees : str
+         type de donnée : covid ou vacance
+     
+     var_selection : str
+         éventuelle variable étudiée lors de la tansformation
+
+     time : int
+         Plage de la moyenne glissante
+     
+     Example 
+     -------
+    '''
     
     def __init__(self, var_selection, donnees, time):
         super().__init__(var_selection, donnees)
