@@ -15,6 +15,7 @@ from Transformation.fenetrage import Fenetrage
 from Transformation.moyenne_glissante import Moyenne_glissante
 from Transformation.sommation import Sommation
 from Transformation.agregation_spatiale import Agregation_Spatiale
+from fonctions import fusion
 
 
 a=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-covid19-2021-03-03-17h03.csv')
@@ -23,15 +24,6 @@ c=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-
 d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
 data=Dataset(d,b)
 
-
-data2=Agregation_Spatiale('incid_hosp', 'covid', 'region').application(data)
-data3=Sommation('incid_hosp', 'covid', 'region').application(data2)
-cp=CartoPlot()
-d=cp.nettoyage_donnee(data3, 'region', 'incid_hosp')
-
-fig = cp.plot_reg_map(data=d, x_lim=(-6, 10), y_lim=(41, 52))
-fig.show()
-fig.savefig('region.test.jpg')
 
 ########QUESTIONS###########################
 
@@ -72,3 +64,29 @@ Sauvegarder(data_final).SauvegarderCSV('question2')
 
 
 ##Question3
+#Comment évolue la moyenne des nouvelles hospitalisations
+# journalières de cette semaine par rapport à celle de la semaine dernière ?
+'''
+donnees_brute=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
+dataset=Dataset(donnees_brute)
+dataset_semaine_actuelle=EstimationDescriptive().moyenne(Selection_Var('incid_hosp', 'covid').application(Fenetrage('incid_hosp', 'covid', '2021-02-25', '2021-03-03').application(dataset)))
+
+
+
+dataset_semaine_precedente=EstimationDescriptive().moyenne(Selection_Var('incid_hosp', 'covid').application(Fenetrage('incid_hosp', 'covid', '2021-02-18', '2021-02-24').application(dataset)))
+
+Sauvegarder(dataset_semaine_precedente).SauvegarderCSV('semaine_prec')
+Sauvegarder(dataset_semaine_actuelle).SauvegarderCSV('semaine_act')
+'''
+
+##Question4
+#Quel est le résultat de k-means avec k = 3 sur les données des 
+# départements du mois de Janvier 2021, lissées avec une moyenne glissante de 7 jours ? 
+
+donnees_hospitaliers=Dataset(Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv'))
+dataset=Fenetrage('incid_hosp', 'covid', '2021-01-01', '2021-01-31').application(donnees_hospitaliers)
+dataset_gliss_1=Moyenne_glissante('incid_hosp', 'covid', 7).application(dataset)
+dataset_gliss_2=Moyenne_glissante('incid_rea', 'covid', 7).application(dataset)
+
+dataset_fusion=fusion(dataset_gliss_1,dataset_gliss_2)
+Sauvegarder(dataset_fusion).SauvegarderCSV('fusion')

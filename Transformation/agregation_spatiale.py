@@ -23,11 +23,6 @@ class Agregation_Spatiale(Transformation):
     var_selection : str
         éventuelle variable étudiée lors de la tansformation
 
-    date_debut : str
-        Date débutant la période étudiée.
-    
-    date_fin : str
-        Date finissant la période étudiée.
     
     Attributs 
     ---------

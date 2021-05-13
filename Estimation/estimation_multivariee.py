@@ -1,4 +1,3 @@
-from Estimation.estimation_descriptive import Estimation
 from Donnees.dataset import Dataset
 import matplotlib.pyplot as plt 
 import random 
@@ -38,7 +37,7 @@ def calc_centroids(clusters, X):
         new_centroids.append(cluster_mean)
     return new_centroids
 
-class EstimationMultivariee(Estimation):
+class EstimationMultivariee:
     ''' Classe héritant de la classe Estimation. Elle permet d'effectuer des estimations multivariées sur un dataset, 
      notamment l'algorithme de k-means.
      

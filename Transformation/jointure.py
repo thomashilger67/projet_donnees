@@ -1,6 +1,7 @@
 from Donnees.dataset import Dataset
 from Transformation.transformation import Transformation
 from Transformation.selection_variable import Selection_Var
+from Donnees.donnees_covid import Covid
 
 class Jointure(Transformation):
     ''' Classe héritant de la classe Transformation. Elle permet de joindre une variable d'un Dataset à un second Dataset.
@@ -47,12 +48,12 @@ class Jointure(Transformation):
         self.dataset2=dataset2
     
     def application_Covid(self,dataset):
-        donnees_covid=dataset.donnees_covid
-        donnees_covid2=self.dataset2.donnees_covid
+        donnees_covid=dataset.donnees_covid.liste
+        donnees_covid2=self.dataset2.donnees_covid.liste
         
-        indice_jour=donnees_covid.liste[0].index("jour")
-        indice_jour2=donnees_covid2.liste[0].index("jour")
-        new_dataset=Dataset([],dataset.donnees_vacances)
+        indice_jour=donnees_covid[0].index("jour")
+        indice_jour2=donnees_covid2[0].index("jour")
+        new_dataset=Dataset(Covid(None,[]),dataset.donnees_vacances)
         indice_sexe=None
         
         if "reg" in donnees_covid[0]:
@@ -74,7 +75,7 @@ class Jointure(Transformation):
         elif self.var_jointure in donnees_covid2[0]:
             indice2=donnees_covid2[0].index(self.var_jointure)
 
-        new_dataset.donnees_covid.append([donnees_covid[0][indice_spatial],donnees_covid2[0][indice_jour2],donnees_covid[0][indice1],donnees_covid2[0][indice2]])
+        new_dataset.donnees_covid.liste.append([donnees_covid[0][indice_spatial],donnees_covid2[0][indice_jour2],donnees_covid[0][indice1],donnees_covid2[0][indice2]])
         pos=1
         i=1
         if len(donnees_covid)>=len(donnees_covid2): #il y a plus de jours dans donnees_covid
@@ -136,8 +137,8 @@ class Jointure(Transformation):
             pos=1
             while donnees_vacance['Academie'][pos]["Code_Dpt"]!=liste[indice_dep]:
                 pos+=1
-            new_dataset.ajout_donnees_covid([liste[indice_dep],donnees_vacance['Academie'][pos]["Zone"],liste[indice_selection]])
-
+            new_dataset.ajout_donnees_covid([liste[indice_dep],donnees_vacance[endroit][pos][self.var_jointure],liste[indice_selection]])
+        return new_dataset
 
 
 

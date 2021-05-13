@@ -34,7 +34,7 @@ class Vacance:
         jeu_de_donnee : str
             chemin d'accès au fichier json
 
-        jeu_de_donnee : dictionnaire
+        jeu_de_donnee_format_dico : dictionnaire
             dictionnaire qu'on veut transformer en dictionnaire 
         
         '''
