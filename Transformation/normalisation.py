@@ -28,7 +28,7 @@ class Normalisation(Transformation):
 
      Example 
      -------
-     >>> d=Covid('/Users/thomashilger/Desktop/projet_donnees/Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
+     >>> d=Covid('./Donnees/Donnees_Covid/covid-hospit-incid-reg-2021-03-03-17h20.csv')
      >>> b=Vacance('./Donnees/vacances.json')
      >>> data= Dataset(d,b)
      >>> print(Normalisation('numReg','covid').application(data).donnees_covid.liste)
