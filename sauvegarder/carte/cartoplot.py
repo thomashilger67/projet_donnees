@@ -9,6 +9,13 @@ import os
 from jellyfish import levenshtein_distance
 
 
+
+
+
+
+
+
+
 class CartoPlot:
     '''Class providing an easy way to plot geographic data.
 
@@ -75,6 +82,43 @@ class CartoPlot:
         self.__sf_dep = shp.Reader(departement_shp_path)
         self.__sf_reg = shp.Reader(regions_shp_path)
         self.__cmap = plt.get_cmap(colormap)
+
+
+
+    def nettoyage_donnee(self,dataset,granularite,var_selection):
+
+        if granularite=='region':
+            indice_var=dataset.donnees_covid.liste[0].index(var_selection)
+            d={}
+            try:
+                indice_region=dataset.donnees_covid.liste[0].index('Region')
+            except:
+                pass
+
+            try:
+                indice_region=dataset.donnees_covid.liste[0].index('nomReg')
+            
+            except:
+                pass
+
+            for ligne in dataset.donnees_covid.liste[1:]:
+                d[ligne[indice_region]]=ligne[indice_var]
+        
+        elif granularite=='departement':
+            indice_var=dataset.donnees_covid.liste[0].index(var_selection)
+            d={}
+
+            indice_dep=dataset.donnees_covid.liste[0].index('dep')
+    
+            for ligne in dataset.donnees_covid.liste[1:]:
+                if not ligne[indice_dep] in ['2A','2B','69D','69M']:
+                    d[str(round(ligne[indice_dep]))]=ligne[indice_var]
+                
+                else : 
+                    d[str(ligne[indice_dep])]=ligne[indice_var]
+
+        return d
+
 
     def plot_reg_map(self, data={}, show_name=True, d_lim=(None, None), x_lim=None, y_lim=None, figsize=(11, 9)):
         '''Plot France's map with Régions and optional data.

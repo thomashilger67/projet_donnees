@@ -74,9 +74,9 @@ class Dataset:
         '''    
         
         if position==-1:
-            self.donnees_covid.append(new_donnee)
+            self.donnees_covid.liste.append(new_donnee)
         else:
-            self.donnees_covid.insert(position,new_donnee)
+            self.donnees_covid.liste.insert(position,new_donnee)
     
     def suppr_donnees_covid(self,position=-1):
 

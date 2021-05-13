@@ -8,7 +8,7 @@ class Sauvegarder:
         self.donnees_a_sauvgarder=donnees_a_sauvgarder
 
     def SauvegarderCSV(self,nom_du_fichier):
-        if self.donnees_a_sauvgarder.donnees_vacances is None :
+        if self.donnees_a_sauvgarder.donnees_vacances:
 
             with open('{}.csv'.format(nom_du_fichier), 'w', newline='') as file:
                 writer = csv.writer(file, quoting=csv.QUOTE_NONNUMERIC,delimiter=';')
