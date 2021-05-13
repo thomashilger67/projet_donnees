@@ -1,3 +1,5 @@
+from Donnees import donnees_vacances
+from Donnees import donnees_covid
 from Donnees.dataset import Dataset
 from Transformation.selection_variable import Selection_Var
 from Donnees.donnees_vacances import Vacance
@@ -35,8 +37,8 @@ class Agregation_Spatiale(Transformation):
     var_selection : str
         éventuelle variable étudiée lors de la tansformation
 
-    region : str
-        chaine de caractère indiquant que l'on veut effectuer une granularité régionale : 'region' 
+    granularité : str
+        chaine de caractère indiquant l'échelle sur laquelle on effectue la granularité : 'nationale' ou 'region' 
     
         
     Example 
@@ -48,12 +50,16 @@ class Agregation_Spatiale(Transformation):
     
     '''
     
-    def __init__(self,var_selection,donnees,region=None):
+    def __init__(self,var_selection,donnees,granularite):
         super().__init__(var_selection,donnees)
-        self.region=region
+        self.granularite=granularite
         
         
     def reg(self):
+        ''' A partir de donnees_vacance, on extrait les départements en les associant à leurs régions.
+            Puis, on crée une liste des région avec le nom de la région en première position suivie de ses départements.
+            Enfin, on supprime les doublons.
+        '''
         vac=Vacance('./Donnees/vacances.json')
         liste_academie=vac.dictionnaire['Academie']
         dep_region=[]
@@ -78,6 +84,26 @@ class Agregation_Spatiale(Transformation):
                 liste_finale.append(region)
         return(liste_finale)            
 
+    def sexe(self,dataset):
+        ''' Fonction qui permet d'obtenir le premier indice d'apparition du sexe dans donnees_covid
+        '''
+        donnees_covid=dataset.donnees_covid.liste
+        indice_sexe=donnees_covid[0].index("sexe")
+        indice0=0
+        while donnees_covid[indice0][indice_sexe]!=float(0):
+            indice0+=1
+            
+        indice1=0
+        while donnees_covid[indice1][indice_sexe]!=float(1):
+            indice1+=1
+            
+        indice2=0
+        while donnees_covid[indice2][indice_sexe]!=float(2):
+            indice2+=1
+        
+        return(indice0,indice1,indice2)
+
+
 
     def application_nationale(self,dataset): 
         
@@ -88,18 +114,7 @@ class Agregation_Spatiale(Transformation):
 
         if "sexe" in donnees_covid[0] :
 
-            indice_sexe=donnees_covid[0].index("sexe")
-            indice0=0
-            while donnees_covid[indice0][indice_sexe]!=float(0):
-                indice0+=1
-            
-            indice1=0
-            while donnees_covid[indice1][indice_sexe]!=float(1):
-                indice1+=1
-            
-            indice2=0
-            while donnees_covid[indice2][indice_sexe]!=float(2):
-                indice2+=1
+            indice0,indice1,indice2=self.sexe(dataset)
         
             somme0=var_dataset[indice0][0]
             somme1=var_dataset[indice2][0]
@@ -157,19 +172,8 @@ class Agregation_Spatiale(Transformation):
         
 
         if 'sexe' in dataset.donnees_covid.liste[0]:
-            indice_sexe=dataset.donnees_covid.liste[0].index("sexe")
 
-            indice0=0
-            while donnees_covid[indice0][indice_sexe]!=float(0):
-                indice0+=1
-            
-            indice1=0
-            while donnees_covid[indice1][indice_sexe]!=float(1):
-                indice1+=1
-            
-            indice2=0
-            while donnees_covid[indice2][indice_sexe]!=float(2):
-                indice2+=1
+            indice0,indice1,indice2=self.sexe(dataset)
         
             somme0=0
             somme1=0
@@ -178,7 +182,8 @@ class Agregation_Spatiale(Transformation):
             difference1=indice1-indice0
             difference2=indice2-indice0
             difference=indice2-indice0+1
-            
+            ind_bon_dep=None
+
             new_dataset=Dataset(Covid(None,[["Region",'jour',"sexe",self.var_selection]]),dataset.donnees_vacances)
             new_jour=donnees_covid[1][indice_jour]
             for region in liste_region:
@@ -186,59 +191,62 @@ class Agregation_Spatiale(Transformation):
                                
                 while pos0<(len(var_dataset)-difference) :
                     jour=donnees_covid[pos0][indice_jour]
-
-                    if donnees_covid[pos0][indice_dep] in region:
-                        while jour==new_jour and pos0<(len(var_dataset)-difference) :
-                        
-                                                     
+                    while jour==new_jour and pos0<(len(var_dataset)-difference) :
+                        if donnees_covid[pos0][indice_dep] in region:                 
+                                                                       
                             somme0+=var_dataset[pos0][0]
                             somme1+=var_dataset[pos0+difference1][0]
                             somme2+=var_dataset[pos0+difference2][0]
+                            ind_bon_dep=pos0
                             pos0+=difference
                             new_jour=donnees_covid[pos0][indice_jour]
+                        else: 
+                            pos0+=difference
+                            new_jour=donnees_covid[pos0][indice_jour] 
+                    if ind_bon_dep!=None:
                         new_dataset.ajout_donnees_covid([region[0],donnees_covid[pos0][indice_jour],float(0),somme0])
                         new_dataset.ajout_donnees_covid([region[0],donnees_covid[pos0+difference1][indice_jour],float(1),somme1])
                         new_dataset.ajout_donnees_covid([region[0],donnees_covid[pos0+difference2][indice_jour],float(2),somme2])
-                        somme0=0
-                        somme1=0
-                        somme2=0
-                        pos0+=difference
+                    ind_bon_dep=None
+                    somme0=0                       
+                    somme1=0
+                    somme2=0
+                    pos0+=difference
                          
-                    else:
-                            pos0+=difference
-                            new_jour=donnees_covid[pos0][indice_jour] 
-               
+                         
 
         else:
             new_dataset=Dataset(Covid(None,[["Region",'jour',self.var_selection]]),dataset.donnees_vacances)
             somme=0
             i=1
             new_jour=donnees_covid[i][indice_jour]
+            ind_bon_dep=None
             for region in liste_region:
                 i=1
                 while i<len(var_dataset)-1:
                     jour=donnees_covid[i][indice_jour]
-                    if donnees_covid[i][indice_dep] in region :
-                        dep=donnees_covid[i][indice_dep]
-                        print(dep)
-                        while jour==new_jour and i<len(var_dataset)-1 :
-                            if donnees_covid[i][indice_dep]==dep:
-                                somme+=var_dataset[i][0]
+                    while jour==new_jour and i<len(var_dataset)-1 :
+                        if donnees_covid[i][indice_dep] in region :
+                                                         
+                            somme+=var_dataset[i][0]
+                            ind_bon_dep=i
                             i+=1
                             new_jour=donnees_covid[i][indice_jour]
-                        new_dataset.ajout_donnees_covid([region[0],donnees_covid[i][indice_jour],somme])
-                        somme=0
-                        i+=1
-                    else:
-                        i+=1
-                        new_jour=donnees_covid[i][indice_jour]                 
-                    
+                        else:
+                            i+=1
+                            new_jour=donnees_covid[i][indice_jour]    
+                    if ind_bon_dep!=None:
+                        new_dataset.ajout_donnees_covid([region[0],donnees_covid[ind_bon_dep][indice_jour],somme])
+                    ind_bon_dep=None
+                    somme=0
+                    i+=1
+                               
             
         return(new_dataset.donnees_covid.liste)
 
     def application_Covid(self,dataset):
 
-        return(self.application_nationale(dataset) if self.region==None else self.application_regionale(dataset))
+        return(self.application_nationale(dataset) if self.granularite.lower()=='nationale' else self.application_regionale(dataset))
     
     def application_Vacance(self,dataset):
         return( "Il n'y a pas d'agrégation spatiale pour les vacances")

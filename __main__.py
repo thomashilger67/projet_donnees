@@ -43,7 +43,7 @@ data=Dataset(a,b.dictionnaire)
 
 #print(data2)
 #Sauvegarder(Selection_Var('numReg','covid').application(data)).SauvegarderCSV('selection.csv')
-print((Agregation_Spatiale("hosp",'Covid',"region").application(data)))  #chiffre eh dessous des offciciels ???
+print((Agregation_Spatiale("dc",'Covid',"region").application(data)))  #chiffre eh dessous des offciciels ???
 
 #Selection_Var('numReg','covid').application(data).donnees_covid
 
