@@ -13,7 +13,6 @@ class EstimationDescriptive:
      >>> data= Dataset(d,b)
      >>> print(EstimationDescriptive().moyenne(data))
 
-     
     '''
 
     def __init__(self):
@@ -43,6 +42,17 @@ class EstimationDescriptive:
         return Dataset(Covid(None,resu),dataset.donnees_vacances)
 
     def variance(self,dataset):
+        '''renvoie la variance de toutes les variables contenues dans le dataset 
+
+        Parameters
+        -----------
+        dataset : Dataset
+
+        Returns
+        -----------
+        dataset 
+            contenant les variances et les nom des variables
+        '''
         resu=[]
         largueur=len(dataset.donnees_covid.liste[0])
         longueur = len(dataset.donnees_covid.liste)-1
@@ -63,6 +73,17 @@ class EstimationDescriptive:
         return Dataset(Covid(None,resu),dataset.donnees_vacances)
 
     def ecart_type(self,dataset):
+        '''renvoie la moyenne de toutes les variables contenues dans le dataset 
+
+        Parameters
+        -----------
+        dataset : Dataset
+
+        Returns
+        -----------
+        dataset 
+            contenant les moyennes et les nom des variables
+        '''
         resu=[]
         var=self.variance(dataset).donnees_covid.liste
         for ligne in var:

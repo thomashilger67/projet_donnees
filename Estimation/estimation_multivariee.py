@@ -56,6 +56,23 @@ class EstimationMultivariee:
         pass
 
     def Kmeans(self, dataset, k, nb_de_recursion):
+        '''renvoie des graphiques des centres des classes 
+
+        Parameters
+        -----------
+        dataset : Dataset
+
+        k : int 
+            nombres de classes
+
+        nb_de_recursion : int
+            nombre de recursion que l'on veut faire 
+
+        Returns
+        -----------
+        jpg 
+            les centres des classes par rapport au nuage de points
+        '''
 
         X=np.array(nettoyage_dataset(dataset))
 

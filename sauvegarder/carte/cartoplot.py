@@ -87,6 +87,19 @@ class CartoPlot:
 
     def nettoyage_donnee(self,dataset,granularite,var_selection):
 
+        ''' fonction qui adapte le dataset en entrée pour l'affichage sur une carte 
+
+        Parameters
+        -----------
+        dataset : Dataset
+        granularite : str  soit region soit departement
+        var_selection : str  variable que l'on veut afficher 
+
+        Returns 
+        -----------
+        dictionnaire
+        '''
+
         if granularite=='region':
             indice_var=dataset.donnees_covid.liste[0].index(var_selection)
             d={}

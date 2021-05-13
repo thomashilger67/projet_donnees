@@ -3,6 +3,38 @@ from Donnees.donnees_covid import Covid
 from Donnees.dataset import Dataset
 
 class Sommation(Transformation):
+    ''' classe qui permet de sommer de manière temporelle les données  à l'echelle régionale ou départmentale
+
+     
+     Parameters
+     ----------
+
+     granularite : str 
+            echelle soit 'region' soit 'departement'
+
+     donnees : str
+         type de donnée : covid ou vacance
+     
+     var_selection : str
+         éventuelle variable étudiée lors de la tansformation
+
+     Attributs 
+     ---------
+
+     donnees : str
+         type de donnée : covid ou vacance
+     
+     var_selection : str
+         éventuelle variable étudiée lors de la tansformation
+
+     Example 
+     ------
+     >>> donnees_brute=Covid('./Donnees/Donnees_Covid/donnees-hospitalieres-nouveaux-covid19-2021-03-03-17h03.csv')
+     >>> dataset=Dataset(donnees_brute)
+     >>> dataset_agrege=Agregation_Spatiale('incid_hosp', 'covid', 'region').application(dataset)
+     >>> dataset_somme=Sommation('incid_hosp', 'covid', 'nationale').application(dataset_agrege)
+     >>> Sauvegarder(dataset_somme).SauvegarderCSV('somme_nationale')
+     '''
 
     def __init__(self,var_selection,donnees,granularite):
         super().__init__(var_selection, donnees)
